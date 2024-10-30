@@ -1,5 +1,5 @@
-#include <QCoreApplication>
-#include <QLibrary>
+// #include <QCoreApplication>
+// #include <QLibrary>
 #include <iostream>
 
 extern "C" {
@@ -7,8 +7,9 @@ extern "C" {
 }
 
 int main(int argc, char *argv[]) {
-    QCoreApplication a(argc, argv);
+    // QCoreApplication a(argc, argv);
     say_hello_();
     std::cout<<"hello qt fortran"<<std::endl;
-    return a.exec();
+    // return a.exec();
+    return 0;
 }
