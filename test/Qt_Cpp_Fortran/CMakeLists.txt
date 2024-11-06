@@ -8,6 +8,6 @@ find_package(Qt5 REQUIRED COMPONENTS Core)
 
 # add_library(my_fortran_code SHARED test.f90)
 
-add_executable(main main.cpp)
+add_executable(main main.cpp test.f90)
  
 target_link_libraries(main Qt5::Core)
