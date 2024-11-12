@@ -55,22 +55,4 @@ private:
 //     QLabel *imageLabel;
 // };
 
-class MatplotlibWidget : public QWidget {
-public:
-    MatplotlibWidget(QWidget *parent = nullptr) : QWidget(parent) {
-        QVBoxLayout *layout = new QVBoxLayout(this);
-
-        py::object matplotlib_module = py::module_::import("matplotlib_embed");
-        py::object create_canvas = matplotlib_module.attr("create_canvas");
-
-        // 调用 Python 函数创建 MatplotlibCanvas
-        py::object canvas = create_canvas();
-
-        // 从 Python 转换为 Qt 对象
-        QWidget *canvas_widget = canvas.cast<QWidget *>();
-
-        layout->addWidget(canvas_widget);
-        setLayout(layout);
-    }
-};
 #endif // MAINWINDOW_H

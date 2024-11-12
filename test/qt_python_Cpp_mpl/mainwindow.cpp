@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // 可以采用这种方式：使用mpl提供的cpp接口绘图，然后将绘图结果pdf在qt中借助popplooer显示
+
     // MatplotlibWidget *matplotlibWidget = new MatplotlibWidget();
     // this->setCentralWidget(matplotlibWidget);
     // this->resize(800, 600);
@@ -18,12 +20,12 @@ MainWindow::MainWindow(QWidget *parent)
     // matplotlibWidget->plot();
 
     // 初始化 Python 解释器
-    py::scoped_interpreter guard{};
-    MatplotlibWidget *matplotlibWidget = new MatplotlibWidget();
-    this->setCentralWidget(matplotlibWidget);
-    this->resize(800, 600);
+    // py::scoped_interpreter guard{};
+    // MatplotlibWidget *matplotlibWidget = new MatplotlibWidget();
+    // this->setCentralWidget(matplotlibWidget);
+    // this->resize(800, 600);
 
-    func_py();
+    // func_py();
 }
 
 MainWindow::~MainWindow()
