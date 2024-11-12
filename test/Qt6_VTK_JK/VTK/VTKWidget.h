@@ -7,13 +7,19 @@
 #include <QtWidgets>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
-// #include <QWebChannel>
-// #include "webobjectinstance.h"
 #include <thread>
-// #include <omp.h>
+#include <qmenu.h>
+
+#ifdef USE_VTK
+#include "QVTKRenderWidget.h"
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkActor.h>
-#include <qmenu.h>
+#include <vtkContextView.h>
+#include <vtkRenderer.h>
+#include <vtkChartXY.h>
+#include <vtkFloatArray.h>
+#include <vtkTable.h>
+#include <vtkPlot.h>
 
 // 不完整申明MainWindow
 class MainWindow;
@@ -37,5 +43,15 @@ private slots:
 private:
     MainWindow* m_pMainWindow; //将主窗口的指针传过来用于操作相应的数据
 };
+#else
+class VTKWidget : public QWidget
+{
+    Q_OBJECT
+public:
+
+public:
+    VTKWidget(QWidget* parent = nullptr){};
+};
+#endif 
 
 #endif

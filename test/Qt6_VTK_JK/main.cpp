@@ -4,11 +4,13 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QSurfaceFormat>
-#include "QVTKRenderWidget.h"
+#include "VTKWidget.h"
 
 int main(int argc, char *argv[])
 {
+    #ifdef USE_VTK
     QSurfaceFormat::setDefaultFormat(QVTKRenderWidget::defaultFormat());
+    #endif
 
     QApplication a(argc, argv);
 

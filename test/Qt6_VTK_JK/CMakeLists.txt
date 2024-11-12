@@ -33,6 +33,7 @@ add_subdirectory(VTK)
 include_directories(
     ${CMAKE_SOURCE_DIR}
     VTK
+    JKQTPlotter
     )
 
 set(PROJECT_SOURCES
@@ -43,6 +44,7 @@ set(PROJECT_SOURCES
         ${QTranslatFiles}
         ${QRC_Srcs}
         VTK/VTKWidget.cpp
+        JKQtPlotter/JKQTPlotterWidget.cpp
 )
 
 add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCES})
@@ -64,19 +66,22 @@ endif()
 target_link_libraries(
     ${PROJECT_NAME} PRIVATE 
     Qt${QT_VERSION_MAJOR}::Widgets 
-    Qt${QT_VERSION_MAJOR}::PrintSupport 
-    Qt${QT_VERSION_MAJOR}::Xml
-    Qt${QT_VERSION_MAJOR}::Svg
-    ${VTK_LIBRARIES}
-    JKQTPlotter6_Release
-    JKQTCommon6_Release
-    JKQTFastPlotter6_Release
-    JKQTMath6_Release
-    JKQTMathText6_Release
     )
 
-# =============== VTK 初始化 ==============
+# =============== 使用JKQtPlotter ===============
+if(USE_JKQtPlotter)
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE 
+    JKQTPlotter${QT_VERSION_MAJOR}::JKQTPlotter${QT_VERSION_MAJOR}
+)
+endif()
+# =============== 使用VTK ==============
 if(USE_VTK)
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE 
+    ${VTK_LIBRARIES}
+)
+    # 必须的
     vtk_module_autoinit(
         TARGETS ${PROJECT_NAME}
         MODULES VTK::ChartsCore

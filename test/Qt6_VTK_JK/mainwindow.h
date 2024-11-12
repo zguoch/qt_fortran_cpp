@@ -2,13 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-#include <vtkContextView.h>
-#include <vtkRenderer.h>
-#include <vtkChartXY.h>
-#include <vtkFloatArray.h>
-#include <vtkTable.h>
-#include <vtkPlot.h>
+#include "VTKWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +19,11 @@ public:
 private:
     Ui::MainWindow *ui;
 protected:
+    #ifdef USE_VTK 
     vtkSmartPointer<vtkContextView> m_vtkChartView;
+    #endif
+public:
+    void test_JKplotter();
+    void test_VTKchart();
 };
 #endif // MAINWINDOW_H

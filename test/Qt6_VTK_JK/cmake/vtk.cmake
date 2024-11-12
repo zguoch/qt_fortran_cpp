@@ -43,3 +43,6 @@ if(VTK_FOUND)
 else()
     message(FATAL_ERROR "VTK is not found")
 endif()
+
+# --- 添加 VTK 宏定义，以便在C++代码中判断
+add_definitions(-DUSE_VTK)

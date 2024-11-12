@@ -27,7 +27,7 @@
      <string notr="true">background-color:orange;</string>
     </property>
    </widget>
-   <widget class="JKQTPlotter" name="widget" native="true">
+   <widget class="JKQTPlotterWidget" name="qJKplotter" native="true">
     <property name="geometry">
      <rect>
       <x>560</x>
@@ -61,7 +61,7 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>JKQTPlotter</class>
+   <class>JKQTPlotterWidget</class>
    <extends>QWidget</extends>
    <header location="global">jkqtplotter/jkqtplotter.h</header>
    <container>1</container>

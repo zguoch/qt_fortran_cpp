@@ -7,7 +7,60 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // ------ JKQtPlotter ------
+    test_JKplotter();
     // ------2D chart---------
+    test_VTKchart();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+void MainWindow::test_JKplotter()
+{
+    #ifdef USE_JKQtPlotter
+    // JKQTPXParsedFunctionLineGraph* graph=new JKQTPXParsedFunctionLineGraph(ui->qJKplotter);
+    // graph->setFunction("sin(x*4*pi)*exp(-x/5)");
+    // graph->setTitle("test");
+    // ui->qJKplotter->addGraph(graph);
+    // ui->qJKplotter->setXY(-10,10,-10,10);
+
+    // JKQTPlotter plot;
+    JKQTPDatastore* ds=ui->qJKplotter->getDatastore();
+ 
+    // 2. now we create data for a simple plot (a sine curve)
+    std::vector<double> a,b;
+    const int Ndata=100;
+    for (int i=0; i<Ndata; i++) {
+        const double x=double(i)/double(Ndata)*8.0*M_PI;
+        a.push_back(x);
+        b.push_back(sin(x));
+    }
+    
+    size_t columnX=ds->addCopiedColumn(a, "x");
+    size_t columnY=ds->addCopiedColumn(b, "y");
+ 
+    // 4. create a graph in the plot, which plots the dataset X/Y:
+    JKQTPXYLineGraph* graph1=new JKQTPXYLineGraph(ui->qJKplotter);
+    graph1->setXColumn(columnX);
+    graph1->setYColumn(columnY);
+    graph1->setTitle(QObject::tr("sine graph"));
+ 
+    // // 5. add the graph to the plot, so it is actually displayed
+    ui->qJKplotter->addGraph(graph1);
+ 
+    // 6. autoscale the plot so the graph is contained
+    ui->qJKplotter->zoomToFit();
+    // delete graph1;
+    #endif
+}
+
+void MainWindow::test_VTKchart()
+{
+    #ifdef USE_VTK
     // Set up the view
     QSurfaceFormat::setDefaultFormat(QVTKOpenGLNativeWidget::defaultFormat()); //IMPORTANT: otherwise get error "vtkGenericOpenGLRenderWindow (0x137f9efd0): Unable to find a valid OpenGL 3.2 or later implementation. ...."
     m_vtkChartView=vtkSmartPointer<vtkContextView>::New();
@@ -43,13 +96,5 @@ MainWindow::MainWindow(QWidget *parent)
     line->SetColor(0, 0, 1);       // 设置线条颜色为蓝色
     line->SetWidth(2.0);               // 设置线条宽度
 
-    // 渲染窗口
-    // view->GetRenderWindow()->SetSize(800, 600);
-    // view->GetRenderWindow()->Render();
+    #endif
 }
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-

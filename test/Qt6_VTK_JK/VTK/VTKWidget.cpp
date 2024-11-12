@@ -1,6 +1,8 @@
 #include "VTKWidget.h"
 #include "mainwindow.h"
 
+#ifdef USE_VTK
+
 VTKWidget::VTKWidget(QWidget* parent)
 : QVTKOpenGLNativeWidget(parent)
 {
@@ -45,3 +47,5 @@ void VTKWidget::setOpacity()
     // 在这里添加设置Actor透明度的代码
     qDebug() << "Setting opacity...";
 }
+
+#endif
