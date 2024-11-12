@@ -25,6 +25,9 @@ include(pybind11)
 
 # =====================================================================================
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+# poppler 
+include_directories(/Users/zguo/MyData/Research/1-OpenSourceCode/Poppler/include/poppler/qt6)
+link_directories(/Users/zguo/MyData/Research/1-OpenSourceCode/Poppler/lib)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -38,7 +41,7 @@ qt_add_executable(qt_python_Cpp_mpl
         ${PROJECT_SOURCES}
     )
 
-target_link_libraries(qt_python_Cpp_mpl PRIVATE Qt6::Widgets pybind11::module ${Python3_LIBRARIES})
+target_link_libraries(qt_python_Cpp_mpl PRIVATE Qt6::Widgets Qt6::Core pybind11::module ${Python3_LIBRARIES} poppler-qt6)
 
 set_target_properties(qt_python_Cpp_mpl PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
