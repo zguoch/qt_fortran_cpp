@@ -4,7 +4,9 @@ set(CMAKE_AUTORCC ON)
 
 # find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 set(QT_VERSION_MAJOR 6)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools 
+PrintSupport Xml Svg #这是JKQtPlotter需要的
+REQUIRED)
 
 # 获取qt的一些变量
 if(QT_VERSION_MAJOR EQUAL 6)

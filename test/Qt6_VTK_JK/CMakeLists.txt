@@ -61,7 +61,19 @@ if(APPLE AND ENABLE_OS_SPECIFIC_INSTALL)
     set_source_files_properties(${logo_icon} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${VTK_LIBRARIES})
+target_link_libraries(
+    ${PROJECT_NAME} PRIVATE 
+    Qt${QT_VERSION_MAJOR}::Widgets 
+    Qt${QT_VERSION_MAJOR}::PrintSupport 
+    Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Svg
+    ${VTK_LIBRARIES}
+    JKQTPlotter6_Release
+    JKQTCommon6_Release
+    JKQTFastPlotter6_Release
+    JKQTMath6_Release
+    JKQTMathText6_Release
+    )
 
 # =============== VTK 初始化 ==============
 if(USE_VTK)

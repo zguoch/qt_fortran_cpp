@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1253</width>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,14 +27,27 @@
      <string notr="true">background-color:orange;</string>
     </property>
    </widget>
+   <widget class="JKQTPlotter" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>69</y>
+      <width>651</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:lightgreen;</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>43</height>
+     <width>1253</width>
+     <height>24</height>
     </rect>
    </property>
   </widget>
@@ -44,7 +57,13 @@
   <customwidget>
    <class>VTKWidget</class>
    <extends>QWidget</extends>
-   <header location="global">VTKWidget.h</header>
+   <header>VTKWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>JKQTPlotter</class>
+   <extends>QWidget</extends>
+   <header location="global">jkqtplotter/jkqtplotter.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

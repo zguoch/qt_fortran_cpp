@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     vtkSmartPointer<vtkChartXY> chart = vtkSmartPointer<vtkChartXY>::New();
     m_vtkChartView->GetScene()->AddItem(chart);
 
-
     // 创建并初始化数据表
     vtkSmartPointer<vtkTable> table = vtkSmartPointer<vtkTable>::New();
     // 创建 x 和 y 数据列
