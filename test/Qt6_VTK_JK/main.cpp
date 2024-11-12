@@ -3,9 +3,13 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QSurfaceFormat>
+#include "QVTKRenderWidget.h"
 
 int main(int argc, char *argv[])
 {
+    QSurfaceFormat::setDefaultFormat(QVTKRenderWidget::defaultFormat());
+
     QApplication a(argc, argv);
 
     QTranslator translator;

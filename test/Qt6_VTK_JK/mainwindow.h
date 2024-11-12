@@ -3,6 +3,13 @@
 
 #include <QMainWindow>
 
+#include <vtkContextView.h>
+#include <vtkRenderer.h>
+#include <vtkChartXY.h>
+#include <vtkFloatArray.h>
+#include <vtkTable.h>
+#include <vtkPlot.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -17,5 +24,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+protected:
+    vtkSmartPointer<vtkContextView> m_vtkChartView;
 };
 #endif // MAINWINDOW_H

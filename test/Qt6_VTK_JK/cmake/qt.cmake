@@ -6,6 +6,15 @@ set(CMAKE_AUTORCC ON)
 set(QT_VERSION_MAJOR 6)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
+# 获取qt的一些变量
+if(QT_VERSION_MAJOR EQUAL 6)
+    set(QT_VERSION ${Qt6_VERSION})
+    set(QT_DIR ${Qt6_DIR})
+else()
+    set(QT_VERSION ${Qt5_VERSION})
+    set(QT_DIR ${Qt5_DIR})
+endif()
+
 # set icon
 if(APPLE)
     set(logo_icon ${CMAKE_CURRENT_SOURCE_DIR}/Icons/logo.icns)

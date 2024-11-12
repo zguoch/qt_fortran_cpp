@@ -1,4 +1,5 @@
-
+option(USE_VTK "Enable VTK" ON)
+option(USE_JKQtPlotter "Enable KQtPlotter" OFF)
 
 # ========== configure ============
 include(system)
@@ -7,3 +8,27 @@ include(vtk)
 include(jkqtplotter)
 # ==================================
 
+
+message( STATUS )
+message( STATUS "=============================================================================" )
+message( STATUS "== ${PROJECT_NAME} Build Information ==" )
+message( STATUS "=============================================================================" )
+message( STATUS "Version:               ${PROJECT_VERSION}")
+message( STATUS "CMake Generator:       ${CMAKE_GENERATOR}")
+message( STATUS "Build type:            ${CMAKE_BUILD_TYPE}")
+message( STATUS "Build types:           ${CMAKE_CONFIGURATION_TYPES}")
+# message( STATUS "Build shared lib:      ${BUILD_SHARED_LIBS}")
+message( STATUS "Using CMake:           ${CMAKE_VERSION}")
+message( STATUS "Using CMake Generator: ${CMAKE_GENERATOR}")
+message( STATUS "Using compiler:        ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}, platform: ${CMAKE_CXX_PLATFORM_ID}" )
+message( STATUS "C++ Standard:          C++ ${CMAKE_CXX_STANDARD}" )
+message( STATUS "LIB-Architecture:      CXX: ${CMAKE_CXX_LIBRARY_ARCHITECTURE} / BASE: ${CMAKE_LIBRARY_ARCHITECTURE}" )
+message( STATUS "System Name:           ${CMAKE_SYSTEM_NAME}" )
+message( STATUS "Processor Name:        ${CMAKE_SYSTEM_PROCESSOR}" )
+message( STATUS "Using Qt:              ${QT_VERSION}" )
+message( STATUS "                       [at ${QT_DIR}]" )
+message( STATUS "Use VTK:               ${USE_VTK}" )
+message( STATUS "Use JKQtPlotter:       ${USE_JKQtPlotter}" )
+message( STATUS "Installing to:         ${CMAKE_INSTALL_PREFIX}" )
+message( STATUS "=============================================================================" )
+message( STATUS )

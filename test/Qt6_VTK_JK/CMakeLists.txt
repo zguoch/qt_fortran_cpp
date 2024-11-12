@@ -12,8 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # =====================================================================================
 #                            Build Options
 # -------------------------------------------------------------------------------------
-option(USE_VTK "Enable VTK" ON)
-option(USE_JKQtPlotter "Enable KQtPlotter" OFF)
+
 # --------------------------------------------------------------------------------------
 
 # =====================================================================================
@@ -30,6 +29,11 @@ endif()
 include(mainconfig)
 # =====================================================================================
 
+add_subdirectory(VTK)
+include_directories(
+    ${CMAKE_SOURCE_DIR}
+    VTK
+    )
 
 set(PROJECT_SOURCES
         main.cpp
@@ -38,6 +42,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         ${QTranslatFiles}
         ${QRC_Srcs}
+        VTK/VTKWidget.cpp
 )
 
 add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCES})
@@ -56,9 +61,20 @@ if(APPLE AND ENABLE_OS_SPECIFIC_INSTALL)
     set_source_files_properties(${logo_icon} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${VTK_LIBRARIES})
 
+# =============== VTK 初始化 ==============
+if(USE_VTK)
+    vtk_module_autoinit(
+        TARGETS ${PROJECT_NAME}
+        MODULES VTK::ChartsCore
+        VTK::InfovisCore
+        VTK::ViewsContext2D
+        VTK::RenderingContextOpenGL2
+        )
+endif()
+# =======================================
 
-# if(QT_VERSION_MAJOR EQUAL 6)
-#     qt_finalize_executable(${PROJECT_NAME})
-# endif()
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(${PROJECT_NAME})
+endif()
